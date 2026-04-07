@@ -19,7 +19,6 @@
     <artifactId>spring_shop_app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring_shop_app</name>
-    <description>Online Shopping Spring Boot App with MySQL, Docker & Kubernetes</description>
 
     <!-- Java Version -->
     <properties>
