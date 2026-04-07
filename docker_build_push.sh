@@ -2,7 +2,7 @@
 
 set -e
 
-IMAGE_NAME="sahana74/spring-kube-sakgroup"
+IMAGE_NAME="sahana74/spring-kube"
 DOCKER_USER="sahana74"
 
 echo "🔍 Checking Docker..."
