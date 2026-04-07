@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${pageTitle} ?: 'ShopEasy'">ShopEasy</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
+    <style>
+        body { background-color: #f8f9fa; }
+        .navbar-brand { font-weight: 700; font-size: 1.5rem; color: #ff6b35 !important; }
+        .btn-orange { background-color: #ff6b35; color: #fff; border: none; }
+        .btn-orange:hover { background-color: #e55a27; color: #fff; }
+        .card { border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 12px; }
+        .product-img { height: 200px; object-fit: cover; border-radius: 12px 12px 0 0; width: 100%; }
+        footer { background: #222; color: #aaa; padding: 20px 0; margin-top: 60px; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-bag-heart-fill"></i> ShopEasy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/?category=Electronics">Electronics</a></li>
+                <li class="nav-item"><a class="nav-link" href="/?category=Clothing">Clothing</a></li>
+                <li class="nav-item"><a class="nav-link" href="/?category=Books">Books</a></li>
+                <li class="nav-item"><a class="nav-link" href="/?category=Home">Home</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer/cart"><i class="bi bi-cart3"></i> Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/customer/orders"><i class="bi bi-box-seam"></i> My Orders</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4" th:fragment="content">
+    <!-- Page content goes here -->
+</div>
+
+<footer class="text-center">
+    <p class="mb-0">&copy; 2024 ShopEasy. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

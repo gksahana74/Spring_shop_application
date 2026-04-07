@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ShopEasy - My Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"/>
+    <style>
+        body { background: #f8f9fa; }
+        .navbar-brand { font-weight: 700; color: #ff6b35 !important; }
+        .card { border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 12px; }
+        .btn-orange { background: #ff6b35; color: #fff; border: none; }
+        .btn-orange:hover { background: #e55a27; color: #fff; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="/"><i class="bi bi-bag-heart-fill"></i> ShopEasy</a>
+        <div class="d-flex gap-3">
+            <a href="/customer/orders" class="nav-link"><i class="bi bi-box-seam"></i> My Orders</a>
+            <a href="/logout" class="nav-link"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h3 class="fw-bold mb-4"><i class="bi bi-cart3"></i> My Cart</h3>
+
+    <div th:if="${#lists.isEmpty(cartItems)}" class="text-center py-5 text-muted">
+        <i class="bi bi-cart-x" style="font-size:3rem;"></i>
+        <p class="mt-3 fs-5">Your cart is empty.</p>
+        <a href="/" class="btn btn-orange">Continue Shopping</a>
+    </div>
+
+    <div th:unless="${#lists.isEmpty(cartItems)}">
+        <div class="card mb-3" th:each="item : ${cartItems}">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="fw-bold mb-1" th:text="${item.productName}">Product</h6>
+                    <span class="text-muted small">Qty: <span th:text="${item.quantity}">1</span></span>
+                </div>
+                <div class="text-end">
+                    <p class="fw-bold text-danger mb-1">₹<span th:text="${item.price * item.quantity}">0</span></p>
+                    <form th:action="@{/customer/cart/remove/{id}(id=${item.cartItemId})}" method="post">
+                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary + Checkout -->
+        <div class="card p-4 mt-3">
+            <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                <span>Total:</span>
+                <span class="text-danger">₹<span th:text="${cartTotal}">0</span></span>
+            </div>
+            <form action="/customer/checkout" method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Delivery Address</label>
+                    <input type="text" class="form-control" name="deliveryAddress"
+                           th:placeholder="${customerName + ', enter your address'}" required/>
+                </div>
+                <button type="submit" class="btn btn-orange w-100 fw-semibold fs-5">
+                    <i class="bi bi-bag-check"></i> Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
