@@ -33,7 +33,7 @@ deploy_app() {
 
 remove_db() {
     echo "🔹 Removing MySQL StatefulSet + Service..."
-    kubectl delete -f "$BASE_PATH/db-statefullset-svc.yml" --ignore-not-found
+    kubectl delete -f "$BASE_PATH/db-statefulset-svc.yml" --ignore-not-found
     echo "✅ MySQL removed."
 }
 
