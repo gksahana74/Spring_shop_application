@@ -19,7 +19,7 @@ setup_storage() {
 deploy_db() {
     setup_storage
     echo "🔹 Deploying MySQL StatefulSet + Service..."
-    kubectl apply -f "$BASE_PATH/db-statefullset-svc.yml"
+    kubectl apply -f "$BASE_PATH/db-statefulset-svc.yml"
     echo "🔹 Waiting for MySQL pod to be running..."
     kubectl wait --for=condition=Ready pod -l app=mysql --timeout=180s
     echo "✅ MySQL deployed successfully."
